@@ -89,14 +89,7 @@ class CompanyDetailView(RetrieveAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
-        company = get_object_or_404(Company, pk=self.kwargs['pk'])
-
-        user = self.request.user
-
-        if not hasattr(user, 'company') or user.company != company:
-            raise PermissionDenied("У вас нет компании")
-
-        return company
+       return get_object_or_404(Company, pk=self.kwargs['pk'])
 
 
 @extend_schema(
