@@ -1,9 +1,11 @@
-from rest_framework import generics
+from rest_framework import generics, status
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.exceptions import PermissionDenied
 from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiTypes
+from rest_framework.response import Response
+
 from .models import Storage
 from .serializers import StorageSerializer
 
@@ -107,3 +109,11 @@ class StorageDeleteView(DestroyAPIView):
             raise PermissionDenied("Вы не являетесь владельцем компании")
 
         return storage
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(
+            {"detail": f"Склад {instance.address} удалён"},
+            status=status.HTTP_200_OK
+        )

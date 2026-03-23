@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'company.apps.CompanyConfig',
     'storage.apps.StorageConfig',
+    'supplier.apps.SupplierConfig',
+    'product.apps.ProductConfig',
+    'supply.apps.SupplyConfig',
 
     'rest_framework',
     'drf_spectacular',
