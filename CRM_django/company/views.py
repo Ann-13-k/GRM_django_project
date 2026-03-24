@@ -12,6 +12,7 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+# Создание компании
 @extend_schema(
         request=CompanySerializer,
         responses={201: CompanySerializer},
@@ -33,6 +34,8 @@ class CompanyView(CreateAPIView):
         self.request.user.is_company_owner = True
         self.request.user.save()
 
+
+# Добавление пользователя в компанию
 class CompanyEmployeeAddView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -79,10 +82,11 @@ class CompanyEmployeeAddView(APIView):
         )
 
 
+# Просмотр компании
 @extend_schema(
     responses={200: None},
     tags=['company'],
-    description="Просмотр компании. Доступно только владельцу компании."
+    description="Просмотр компании. Доступно авторизованным пользователям."
 )
 class CompanyDetailView(RetrieveAPIView):
     serializer_class = CompanySerializer
@@ -92,6 +96,7 @@ class CompanyDetailView(RetrieveAPIView):
        return get_object_or_404(Company, pk=self.kwargs['pk'])
 
 
+# Обновление данных компании
 @extend_schema(
         responses={200: CompanySerializer},
         tags=['company'],
@@ -114,6 +119,7 @@ class CompanyUpdateView(UpdateAPIView):
         return user.company
 
 
+# Удаление компании
 @extend_schema(
         responses={204: None},
         tags=['company'],

@@ -91,9 +91,6 @@ class ProductUpdateView(UpdateAPIView):
         if product.storage.company != user.company:
             raise PermissionDenied("Товар не принадлежит вашей компании")
 
-        if not user.is_company_owner:
-            raise PermissionDenied("Вы не являетесь владельцем компании")
-
         return product
 
 
@@ -122,9 +119,6 @@ class ProductDeleteView(DestroyAPIView):
 
         if product.storage.company != user.company:
             raise PermissionDenied("Товар не принадлежит вашей компании")
-
-        if not user.is_company_owner:
-            raise PermissionDenied("Только владелец компании может удалить продукт")
 
         return product
 

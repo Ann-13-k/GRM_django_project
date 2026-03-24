@@ -79,9 +79,6 @@ class SupplierUpdateView(UpdateAPIView):
         if not user.company or supplier.company != user.company:
             raise PermissionDenied("Вы не привязаны к данной компании")
 
-        if not user.is_company_owner:
-            raise PermissionDenied("Вы не являетесь владельцем компании")
-
         return supplier
 
 
@@ -107,9 +104,6 @@ class SupplierDeleteView(DestroyAPIView):
 
         if not user.company or supplier.company != user.company:
             raise PermissionDenied("Вы не привязаны к данной компании")
-
-        if not user.is_company_owner:
-            raise PermissionDenied("Вы не являетесь владельцем компании")
 
         return supplier
 
