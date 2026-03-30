@@ -14,12 +14,12 @@ from product.models import Product
 from .serializers import SupplySerializer, SupplyProductSerializer, SupplyCreateSerializer
 
 
-# Создание поставки с товароами
+# Создание поставки с товарами
 @extend_schema(
     request=SupplyCreateSerializer,
     responses={200: SupplySerializer},
     tags=['supply'],
-    description="Создание поставки с товароами"
+    description="Создание поставки с товарами"
 )
 class SupplyCreateView(APIView):
     permission_classes = [IsAuthenticated]

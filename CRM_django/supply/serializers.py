@@ -1,4 +1,4 @@
-from rest_framework import serializers, viewsets
+from rest_framework import serializers
 from .models import Supply, SupplyProduct
 
 class SupplySerializer(serializers.ModelSerializer):
