@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'supplier.apps.SupplierConfig',
     'product.apps.ProductConfig',
     'supply.apps.SupplyConfig',
+    'sale.apps.SaleConfig',
 
     'rest_framework',
     'drf_spectacular',
@@ -57,6 +58,8 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5
 }
 
 SPECTACULAR_SETTINGS = {

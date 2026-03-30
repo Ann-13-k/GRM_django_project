@@ -40,6 +40,7 @@ urlpatterns = [
     path('api/supplier/', include('supplier.urls')),
     path('api/supply/', include('supply.urls')),
     path('api/product/', include('product.urls')),
+    path('api/sale/', include('sale.urls')),
 
     path('api/auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
